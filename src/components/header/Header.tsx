@@ -14,6 +14,10 @@ const Header = () => {
       url: "/about-us",
     },
     {
+      title: "Training Programs",
+      url: "/programs",
+    },
+    {
       title: "Our Coaches",
       url: "/coaches",
     },

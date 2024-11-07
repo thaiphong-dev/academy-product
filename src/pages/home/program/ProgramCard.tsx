@@ -44,14 +44,14 @@ const ProgramCard = ({
       </div>
       <div className="space-y-[20px]">
         <p className="uppercase text-[22px] font-bold">{title}</p>
-        <p className="text-[#2F88A6] uppercase font-semibold text-[18px]">
+        <p className="text-main uppercase font-semibold text-[18px]">
           {subtitle}
         </p>
-        <div className="w-[20px] h-[1px] bg-[#2F88A6]"></div>
+        <div className="w-[30px] h-[2px] bg-main"></div>
         <p>{content}</p>
 
         {buttonTitle && (
-          <div className="w-fit px-[40px] py-[10px] bg-[#2F88A6] rounded-[10px] text-white hover:bg-main cursor-pointer transition-all duration-150">
+          <div className="w-fit px-[40px] py-[10px] bg-main rounded-[10px] text-white hover:bg-[#2F88A6] cursor-pointer transition-all duration-150">
             {buttonTitle}
           </div>
         )}

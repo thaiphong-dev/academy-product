@@ -44,19 +44,10 @@ const TrainPrograms = () => {
     },
   ];
   return (
-    <div
-      className="w-full h-full "
-      style={{
-        backgroundImage: "url(/assets/images/background/background.jpg)",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundOrigin: "content-box",
-      }}
-    >
+    <div className="w-full h-full ">
       <div className="pb-[100px]">
         <div className="flex justify-center items-center py-[50px]">
-          <p className="text-[35px] font-bold uppercase text-[#2F88A6]">
+          <p className="text-[35px] font-bold uppercase text-main">
             training programs
           </p>
         </div>

@@ -14,8 +14,8 @@ const SubBanner = () => {
     >
       <div className="h-screen w-full absolute top-0 z-10 bg-black/30"></div>
       <div className="flex justify-center items-center h-full w-full ">
-        <div className="relative z-20 w-[1000px] h-full flex justify-center items-center flex-col space-y-[20px]">
-          <p className="text-yellow-300 text-[35px] font-bold uppercase">
+        <div className="relative z-20 w-[1000px] h-full flex justify-center items-center flex-col space-y-[120px]">
+          <p className="text-yellow-200 text-[35px] font-bold uppercase">
             badminton for all
           </p>
 
