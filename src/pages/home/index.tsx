@@ -1,9 +1,10 @@
 import Banner from "@/components/banner/Banner";
 import SubBanner from "@/components/banner/SubBanner";
-import Header from "@/components/header/Header";
 import React from "react";
 import TrainPrograms from "./program/TrainPrograms";
 import dynamic from "next/dynamic";
+import OurGallery from "./gallery/OurGallery";
+import PromoBanner from "./promoBanner/PromoBanner";
 
 const Coaches = dynamic(() => import("./coaches/Coaches"), {
   ssr: false,
@@ -11,11 +12,12 @@ const Coaches = dynamic(() => import("./coaches/Coaches"), {
 const HomePage = () => {
   return (
     <div>
-      <Header />
       <Banner />
       <SubBanner />
       <TrainPrograms />
       <Coaches />
+      <PromoBanner />
+      <OurGallery />
     </div>
   );
 };
