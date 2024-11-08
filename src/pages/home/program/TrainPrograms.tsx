@@ -52,7 +52,7 @@ const TrainPrograms = () => {
           </p>
         </div>
         <div className="flex justify-center items-center">
-          <div className="w-[1200px] space-y-[100px]">
+          <div className="xl:w-[1200px] md:w-[700px] w-full px-[20px]  md:space-y-[50px] xl:space-y-[100px] space-y-[20px]">
             {mockPrograms?.map((x, index) => (
               <ProgramCard key={x.title} {...x} count={index + 1} />
             ))}

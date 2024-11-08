@@ -22,18 +22,20 @@ const ProgramCard = ({
   return (
     <div
       className={`flex justify-between items-start  ${
-        count && count % 2 === 0 ? "flex-row-reverse" : "space-x-[100px]"
-      }`}
+        count && count % 2 === 0 ? "md:flex-row-reverse" : "md:space-x-[100px]"
+      } flex-col md:flex-row space-y-[20px] md:space-y-0`}
     >
-      <div className={`${count && count % 2 === 0 ? "pl-[100px]" : ""}`}>
-        <div className="!w-[590px] !h-[310px] relative">
+      <div className={`${count && count % 2 === 0 ? "md:pl-[100px]" : ""} `}>
+        <div className="md:!w-[590px] md:!h-[310px] min-w-full max-w-[700px] w-full aspect-video h-full  relative">
           {image ? (
             <Image
               className="rounded-[20px]"
               src={image}
-              fill
-              sizes="auto"
+              layout="responsive" // Makes the image responsive within the container
+              width={350} // Set a base width for the image
+              height={200} // Set a base height for the image, preserving aspect ratio
               alt="img"
+              objectFit="cover" // Ensures the image fills the container width
             />
           ) : (
             video && (

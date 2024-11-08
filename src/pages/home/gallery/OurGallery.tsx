@@ -45,7 +45,7 @@ const OurGallery = () => {
           </p>
         </div>
         <div className="flex justify-center items-center">
-          <div className="w-full px-[40px] grid grid-cols-4 gap-y-[40px]">
+          <div className="w-full px-[40px] grid grid-cols-1 md:grid-cols-4 gap-y-[40px]">
             {mockPrograms?.map((x, index) => (
               <div
                 key={index}

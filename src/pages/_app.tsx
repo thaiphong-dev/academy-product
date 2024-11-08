@@ -10,7 +10,7 @@ const exo = Exo({ subsets: ["latin"] });
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div
-      className={exo.className}
+      className={`${exo.className} min-h-screen`}
       style={{
         backgroundImage: "url(/assets/images/background/background.jpg)",
         backgroundRepeat: "repeat",
