@@ -14,8 +14,8 @@ export default function Footer() {
       url: "/about-us",
     },
     {
-      title: "Training Programs",
-      url: "/programs",
+      title: "Booking Course",
+      url: "/booking",
     },
     {
       title: "Our Coaches",
@@ -34,7 +34,7 @@ export default function Footer() {
     <>
       {/* ui for PC  */}
       <div
-        className="h-[450px] w-full hidden md:block"
+        className="h-[450px] w-full hidden md:block relative bottom-0"
         style={{
           backgroundImage: "url(/assets/images/footer/footer.jpg)",
           backgroundColor: "#11191c",
@@ -127,7 +127,7 @@ export default function Footer() {
 
       {/* ui for MO  */}
       <div
-        className="h-[200px] w-full md:hidden"
+        className="h-[200px] w-full md:hidden relative bottom-0"
         style={{
           backgroundImage: "url(/assets/images/footer/footer.jpg)",
           backgroundColor: "#11191c",

@@ -23,7 +23,9 @@ line-height: 180%;
   height: 100%;
 }
 
-
+.ant-input, .ant-select, .ant-input-number-input  {
+  height: 50px !important;
+}
 
 /* 
 @media (prefers-color-scheme: dark) {

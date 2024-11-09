@@ -48,7 +48,7 @@ const TrainPrograms = () => {
       <div className="pb-[100px]">
         <div className="flex justify-center items-center py-[50px]">
           <p className="text-[35px] font-bold uppercase text-main">
-            training programs
+            Booking Course
           </p>
         </div>
         <div className="flex justify-center items-center">
