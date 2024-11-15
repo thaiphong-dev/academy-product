@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
+import Bottommenu from "@/components/bottomMenu";
 const exo = Exo({ subsets: ["latin"] });
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -21,9 +22,10 @@ export default function App({ Component, pageProps }: AppProps) {
       }}
     >
       <Header />
-      <div className="mt-[100px]">
+      <div className="md:mt-[100px] mt-[60px]">
         <Component {...pageProps} />;
       </div>
+      <Bottommenu />
       <Footer />
     </div>
   );

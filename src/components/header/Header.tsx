@@ -1,8 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
 
+const Sidebar = dynamic(() => import("../sideBarMenu/SideBarMenu"), {
+  ssr: false,
+});
 const Header = () => {
   const headerList = [
     {
@@ -31,6 +35,8 @@ const Header = () => {
     },
   ];
   const router = useRouter();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
     <>
       {/* ui for PC  */}
@@ -64,6 +70,14 @@ const Header = () => {
           <div className="flex justify-between items-center space-x-[20px]">
             <div className="w-[28px] aspect-square relative cursor-pointer">
               <Image
+                src="/assets/images/icons/bell.svg"
+                fill
+                sizes="auto"
+                alt="bell"
+              />
+            </div>
+            <div className="w-[28px] aspect-square relative cursor-pointer">
+              <Image
                 src="/assets/images/icons/cart.svg"
                 fill
                 sizes="auto"
@@ -83,12 +97,12 @@ const Header = () => {
       </div>
 
       {/* ui for MO  */}
-      {/* <div className="w-full justify-center items-center py-[10px] fixed top-0 bg-black/50 z-50 flex md:hidden ">
-        <div className="flex justify-between items-center w-[1200px]">
+      <div className="w-full justify-center items-center py-[10px] fixed top-0 bg-white z-50 flex  md:hidden ">
+        <div className="flex justify-between items-center w-full px-[10px]">
           <div className="flex justify-start items-center space-x-[40px]">
             <div
               onClick={() => router.push("/")}
-              className="w-[80px] aspect-square relative rounded-full cursor-pointer"
+              className="w-[40px] aspect-square relative rounded-full cursor-pointer"
             >
               <Image
                 src="/assets/images/logo/logo.jpg"
@@ -98,8 +112,26 @@ const Header = () => {
               />
             </div>
           </div>
+
+          {router.asPath !== "/" && (
+            <div className="flex justify-between items-center space-x-[20px]">
+              <div
+                onClick={() => setIsSidebarOpen(true)}
+                className="w-[28px] aspect-square relative cursor-pointer"
+              >
+                <Image
+                  src="/assets/images/icons/menu.svg"
+                  fill
+                  sizes="auto"
+                  alt="menu"
+                />
+              </div>
+            </div>
+          )}
         </div>
-      </div> */}
+      </div>
+
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
     </>
   );
 };

@@ -7,6 +7,7 @@ const BookingPriceCard = ({
 }) => {
   const mock = {
     basic: {
+      title: "Cơ bản",
       eightB: "400.000",
       twelveB: "600.000",
       sixteenB: "800.000",
@@ -14,6 +15,7 @@ const BookingPriceCard = ({
       twentyFourB: "1.200.000",
     },
     adventage: {
+      title: "Nâng cao",
       eightB: "600.000",
       twelveB: "900.000",
       sixteenB: "1.200.000",
@@ -21,6 +23,7 @@ const BookingPriceCard = ({
       twentyFourB: "1.800.000",
     },
     private: {
+      title: "Đội nhóm",
       eightB: "600.000",
       twelveB: "900.000",
       sixteenB: "1.200.000",
@@ -32,7 +35,7 @@ const BookingPriceCard = ({
     <div className="pb-[20px] h-full w-[350px] text-white bg-black rounded-[20px]">
       <div className=" flex flex-col justify-center items-center space-y-[10px] pt-[50px] text-center">
         <p className="text-[30px]">
-          Học phí lớp <span className="font-bold">Cơ bản</span>
+          Học phí lớp <span className="font-bold">{mock[type].title}</span>
         </p>
 
         <div className="bg-white text-black text-[18px] font-bold px-[25px] py-[5px] leading-6">

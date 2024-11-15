@@ -1,6 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Form, Input, InputNumber, Select, Space } from "antd";
-import React, { useEffect } from "react";
+import {
+  Button,
+  Checkbox,
+  Form,
+  Input,
+  InputNumber,
+  Select,
+  Space,
+} from "antd";
+import React, { Fragment, useEffect, useState } from "react";
 import { CloseCircleOutlined, PlusOutlined } from "@ant-design/icons/lib";
 
 const StudentInfor = () => {
@@ -27,6 +35,7 @@ const StudentInfor = () => {
             workingPlace: "",
             class: "",
             amount: "",
+            pickUpService: false,
           },
         ],
       });
@@ -36,8 +45,9 @@ const StudentInfor = () => {
   const handleChange = (name: any, fieldName: string, value: any) => {
     form.setFieldValue(["student", name, fieldName], value);
   };
+  const [refresh, setRefresh] = useState(Math.random());
   return (
-    <div className="w-[600px] h-full space-y-[20px]  px-[20px] py-[20px]">
+    <div className="md:w-[600px] w-full h-full space-y-[10px] md:space-y-[20px] px-[10px] md:px-[20px] py-[10px] md:py-[20px]">
       <div>
         <Form
           form={form}
@@ -51,17 +61,22 @@ const StudentInfor = () => {
               <>
                 {fields.map(({ key, name, ...restField }) => (
                   <Space key={key} align="baseline" className="block">
+                    {name !== 0 && (
+                      <div className="w-full flex justify-center items-center py-[20px]">
+                        <div className="w-[50%] h-[1px] bg-slate-600"></div>
+                      </div>
+                    )}
                     <div>
-                      <p className="text-[20px] font-semibold">
+                      <p className="md:text-[20px] text-[18px] font-semibold">
                         Thông tin học sinh - {name + 1}
                       </p>
 
                       {form.getFieldValue("student")?.length > 1 && (
                         <div
                           onClick={() => remove(name)}
-                          className="w-full text-[18px] cursor-pointer text-red-600 justify-end items-end text-right"
+                          className="w-full text-[20px] cursor-pointer text-red-600 justify-end items-end text-right"
                         >
-                          <CloseCircleOutlined />
+                          <CloseCircleOutlined />{" "}
                         </div>
                       )}
                     </div>
@@ -72,7 +87,7 @@ const StudentInfor = () => {
                         { required: true, message: "Vui lòng nhập họ và tên!" },
                       ]}
                     >
-                      <label className="text-[16px] inline-block w-full">
+                      <label className="md:text-[16px] text-[15px]">
                         Họ và Tên <span className="text-red-600">*</span>
                       </label>
 
@@ -95,7 +110,7 @@ const StudentInfor = () => {
                           },
                         ]}
                       >
-                        <label className="text-[16px]">
+                        <label className="md:text-[16px] text-[15px]">
                           Giới tính <span className="text-red-600">*</span>
                         </label>
                         <Select
@@ -118,7 +133,7 @@ const StudentInfor = () => {
                           { required: true, message: "Vui lòng nhập tuổi!" },
                         ]}
                       >
-                        <label className="text-[16px]">
+                        <label className="md:text-[16px] text-[15px]">
                           Tuổi <span className="text-red-600">*</span>
                         </label>
                         <InputNumber
@@ -131,34 +146,6 @@ const StudentInfor = () => {
                       </Form.Item>
                     </div>
 
-                    <Form.Item
-                      {...restField}
-                      name={[name, "workingPlace"]}
-                      rules={[
-                        { required: true, message: "Vui lòng chọn giới tính!" },
-                      ]}
-                    >
-                      <label className="text-[16px]">
-                        Địa điểm học <span className="text-red-600">*</span>
-                      </label>
-                      <Select
-                        onChange={(e) => {
-                          handleChange(name, "workingPlace", e);
-                        }}
-                        placeholder="Địa điểm học"
-                      >
-                        <Select.Option value="DS">
-                          sân Đường Sắt - Phó Đức Chính
-                        </Select.Option>
-                        <Select.Option value="BD">
-                          sân Bưu Điện Trung Tâm - Tầng 3 - 02 Trần Thị Kỷ,
-                          Tp.Quy Nhơn
-                        </Select.Option>
-                        <Select.Option value="TD">
-                          Sân Cầu Lông Tỉnh Đội - Đối Diện 54 Nguyễn Thị Định{" "}
-                        </Select.Option>
-                      </Select>
-                    </Form.Item>
                     <div className="flex justify-between items-center space-x-[10px]">
                       <Form.Item
                         {...restField}
@@ -168,7 +155,7 @@ const StudentInfor = () => {
                           { required: true, message: "Vui lòng lớp học!" },
                         ]}
                       >
-                        <label className="text-[16px]">
+                        <label className="md:text-[16px] text-[15px]">
                           Lớp học <span className="text-red-600">*</span>
                         </label>
                         <Select
@@ -198,7 +185,7 @@ const StudentInfor = () => {
                           },
                         ]}
                       >
-                        <label className="text-[16px]">
+                        <label className="md:text-[16px] text-[15px]">
                           Số buổi học <span className="text-red-600">*</span>
                         </label>
                         <Select
@@ -225,14 +212,70 @@ const StudentInfor = () => {
                         </Select>
                       </Form.Item>
                     </div>
+
+                    <Fragment key={refresh}>
+                      <Form.Item {...restField} name={[name, "pickUpService"]}>
+                        <Checkbox
+                          defaultChecked={
+                            form.getFieldValue("student")?.[name]?.pickUpService
+                          }
+                          onChange={(e) => {
+                            console.log("e.target.value", e.target.checked);
+                            setRefresh(Math.random());
+                            handleChange(
+                              name,
+                              "pickUpService",
+                              e.target.checked
+                            );
+                          }}
+                        >
+                          <p className="font-[500px]">
+                            Đăng ký dịch vụ đưa đón
+                          </p>
+                        </Checkbox>
+                      </Form.Item>
+                      {form.getFieldValue("student")?.[name]?.pickUpService && (
+                        <Form.Item
+                          {...restField}
+                          name={[name, "workingPlace"]}
+                          rules={[
+                            {
+                              required: true,
+                              message: "Vui lòng chọn giới tính!",
+                            },
+                          ]}
+                        >
+                          <label className="md:text-[16px] text-[15px]">
+                            Địa điểm học <span className="text-red-600">*</span>
+                          </label>
+                          <Input
+                            onChange={(e) => {
+                              handleChange(
+                                name,
+                                "workingPlace",
+                                e.target.value
+                              );
+                            }}
+                            placeholder="Địa chỉ đăng ký đưa đón học sinh"
+                          />
+                        </Form.Item>
+                      )}
+                      <div className="w-full text-right text-[25px] text-main">
+                        Học phí:{" "}
+                        <span className="text-main font-bold">
+                          1.000.000 <span className="underline">đ</span>
+                        </span>
+                      </div>
+                    </Fragment>
                   </Space>
                 ))}
-                <Form.Item>
+                <Form.Item className="mt-[20px]">
                   <Button
-                    type="dashed"
+                    // type="dashed"
                     onClick={() => add()}
                     block
                     icon={<PlusOutlined />}
+                    className=" !py-[10px] h-full rounded-[10px] drop-shadow-md "
                   >
                     Thêm học sinh
                   </Button>
@@ -241,16 +284,13 @@ const StudentInfor = () => {
             )}
           </Form.List>
 
-          <div className="w-full text-right text-[25px] text-main">
-            Học phí:{" "}
-            <span className="text-main font-bold">
-              1.000.000 <span className="underline">đ</span>
-            </span>
-          </div>
-
-          <Form.Item>
-            <Button type="dashed" htmlType="submit" block>
-              Đăng ký
+          <Form.Item className="mt-[-10px] ">
+            <Button
+              htmlType="submit"
+              block
+              className=" !px-[25px] !py-[10px] h-full rounded-[10px] bg-main drop-shadow-md"
+            >
+              <p className="text-[18px] font-semibold text-white"> Đăng ký</p>
             </Button>
           </Form.Item>
         </Form>

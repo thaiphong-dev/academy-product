@@ -127,7 +127,7 @@ export default function Footer() {
 
       {/* ui for MO  */}
       <div
-        className="h-[200px] w-full md:hidden relative bottom-0"
+        className="h-[250px] pb-[100px] w-full md:hidden relative bottom-0"
         style={{
           backgroundImage: "url(/assets/images/footer/footer.jpg)",
           backgroundColor: "#11191c",

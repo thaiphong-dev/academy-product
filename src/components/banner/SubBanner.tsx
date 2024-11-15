@@ -40,7 +40,7 @@ const SubBanner = () => {
               </div>
 
               <div>
-                <VideoPlayer autoPlay={true} src="/assets/videos/video.mp4" />
+                <VideoPlayer src="/assets/videos/video.mp4" />
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@ const SubBanner = () => {
               </div>
 
               <div>
-                <VideoPlayer autoPlay={true} src="/assets/videos/video.mp4" />
+                <VideoPlayer src="/assets/videos/video.mp4" />
               </div>
             </div>
           </div>

@@ -11,7 +11,7 @@ const ParentInfor = () => {
   };
 
   return (
-    <div className="w-[500px] h-full space-y-[20px] bg-black/5 px-[20px] py-[20px]">
+    <div className="md:w-[500px] w-full  h-full space-y-[10px] md:space-y-[20px] md:bg-black/5 px-[10px] md:px-[20px] py-[10px] md:py-[20px]">
       <div>
         <p className="text-[20px] font-semibold">Thông tin người đại diện</p>
       </div>
@@ -21,7 +21,7 @@ const ParentInfor = () => {
           <Form.Item
             rules={[{ required: true, message: "Vui lòng nhập họ và tên!" }]}
           >
-            <label className="text-[16px]">
+            <label className="text-[16px] md:text-[15px]">
               Họ và Tên <span className="text-red-600">*</span>
             </label>
             <Input placeholder="Nhập họ và tên" />
@@ -31,7 +31,7 @@ const ParentInfor = () => {
             name="gender"
             rules={[{ required: true, message: "Vui lòng chọn giới tính!" }]}
           >
-            <label className="text-[16px]">
+            <label className="text-[16px] md:text-[15px]">
               Giới tính <span className="text-red-600">*</span>
             </label>
             <Select placeholder="Giới tính">
@@ -53,7 +53,7 @@ const ParentInfor = () => {
               },
             ]}
           >
-            <label className="text-[16px]">
+            <label className="text-[16px] md:text-[15px]">
               Số điện thoại <span className="text-red-600">*</span>
             </label>
 
@@ -61,7 +61,7 @@ const ParentInfor = () => {
           </Form.Item>
 
           <Form.Item name="phone">
-            <label className="text-[16px]">Email</label>
+            <label className="text-[16px] md:text-[15px]">Email</label>
 
             <Input placeholder="Nhập Email" style={{ width: "100%" }} />
           </Form.Item>
