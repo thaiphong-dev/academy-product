@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu } from "antd";
+import { Layout, Menu } from "antd/lib";
 import { CloseOutlined } from "@ant-design/icons";
 const { Sider } = Layout;
 interface SidebarProps {

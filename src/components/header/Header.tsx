@@ -84,7 +84,12 @@ const Header = () => {
                 alt="cart"
               />
             </div>
-            <div className="w-[28px] aspect-square relative cursor-pointer">
+            <div
+              onClick={() => {
+                router.push("/my-page");
+              }}
+              className="w-[28px] aspect-square relative cursor-pointer"
+            >
               <Image
                 src="/assets/images/icons/user.svg"
                 fill

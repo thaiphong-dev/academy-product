@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Form, Input, Select } from "antd";
+import { Form, Input, Select } from "antd/lib";
 import { Option } from "antd/es/mentions";
 import React from "react";
 

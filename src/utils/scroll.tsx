@@ -1,4 +1,4 @@
-export const smoothScrollTo = (element: HTMLElement | null) => {
+export const SmoothScrollTo = (element: HTMLElement | null) => {
   if (element) {
     const scrollHeight =
       element.getBoundingClientRect().top + window.scrollY - 100; // Adjust by 100px

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FileType, getBase64 } from "@/utils/image";
+import React, { useState } from "react";
 import {
   Button,
   Form,
@@ -8,9 +8,10 @@ import {
   Upload,
   UploadFile,
   UploadProps,
-} from "antd";
-import React, { useState } from "react";
+} from "antd/lib";
 import { PlusOutlined } from "@ant-design/icons";
+import { FileType, GetBase64 } from "@/utils/image";
+
 const CommonInfor = () => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
@@ -18,7 +19,7 @@ const CommonInfor = () => {
 
   const handlePreview = async (file: UploadFile) => {
     if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj as FileType);
+      file.preview = await GetBase64(file.originFileObj as FileType);
     }
 
     setPreviewImage(file.url || (file.preview as string));

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useCallback } from "react";
-import { Select, Button, DatePicker } from "antd";
+import { Select, Button, DatePicker } from "antd/lib";
 import dayjs, { Dayjs } from "dayjs";
 import Image from "next/image";
 

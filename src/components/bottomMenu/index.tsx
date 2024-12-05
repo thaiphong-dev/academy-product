@@ -154,7 +154,7 @@ const Bottommenu = () => {
                 asPath={router.asPath ?? ""}
                 imageActiveLink="/assets/images/icons/user.svg"
                 imageLink="/assets/images/icons/user.svg"
-                link="/me"
+                link="/my-page"
                 title={"Tài khoản"}
               />
             </div>

@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { Fragment, useEffect, useState } from "react";
+
 import {
   Button,
   Checkbox,
@@ -7,8 +9,7 @@ import {
   InputNumber,
   Select,
   Space,
-} from "antd";
-import React, { Fragment, useEffect, useState } from "react";
+} from "antd/lib";
 import { CloseCircleOutlined, PlusOutlined } from "@ant-design/icons/lib";
 
 const StudentInfor = () => {
