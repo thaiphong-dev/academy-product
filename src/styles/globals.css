@@ -3,18 +3,17 @@
 @tailwind utilities;
 
 :root {
-margin: 0;
-padding: 0 ;
-box-sizing: border-box;
-font-family: "Exo", sans-serif;
-line-height: 180%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Exo", sans-serif;
+  line-height: 180%;
 }
 
 @media (max-width: 768px) {
   :root {
-  font-size: 13px;
-  min-width: 375px;
-
+    font-size: 13px;
+    min-width: 375px;
   }
 }
 
@@ -23,8 +22,29 @@ line-height: 180%;
   height: 100%;
 }
 
-.ant-input, .ant-select, .ant-input-number-input  {
+.ant-input,
+.ant-select,
+.ant-input-number-input {
   height: 50px !important;
+}
+
+.custom-select .ant-select-selector {
+  border: none !important; /* Loại bỏ border */
+  box-shadow: none !important; /* Loại bỏ shadow */
+}
+
+.custom-select .ant-select-focused .ant-select-selector {
+  border: none !important; /* Loại bỏ border khi chọn */
+}
+.custom-select .ant-select-selection-item {
+  color: #1890ff !important; /* Thay #1890ff bằng màu primary của bạn */
+}
+
+.ant-picker-dropdown {
+  width: 100vw; /* Giới hạn chiều rộng của dropdown */
+  left: 0 !important; /* Đảm bảo dropdown không bị lệch */
+  right: 0 !important; /* Đảm bảo dropdown không vượt qua phải màn hình */
+  overflow: hidden; /* Ngăn chặn tràn */
 }
 
 /* 
