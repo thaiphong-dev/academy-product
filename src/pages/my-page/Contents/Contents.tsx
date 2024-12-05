@@ -3,7 +3,7 @@ import Infomation from "./Information";
 
 const Contents = () => {
   return (
-    <div className="w-full ml-[40px] ">
+    <div className="w-full md:ml-[40px] ">
       <Infomation />
     </div>
   );
