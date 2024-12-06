@@ -4,6 +4,7 @@ import { Exo } from "next/font/google";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+// import "antd/dist/reset.css";
 
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";

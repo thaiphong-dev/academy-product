@@ -10,27 +10,27 @@ const Sidebar = dynamic(() => import("../sideBarMenu/SideBarMenu"), {
 const Header = () => {
   const headerList = [
     {
-      title: "Home",
+      title: "Trang chủ",
       url: "/",
     },
     {
-      title: "About Us",
+      title: "Về chúng tôi",
       url: "/about-us",
     },
     {
-      title: "Booking Course",
+      title: "Đăng ký",
       url: "/booking",
     },
     {
-      title: "Our Coaches",
+      title: "Huấn luyện viên",
       url: "/coaches",
     },
     {
-      title: "Shop",
+      title: "Cửa hàng",
       url: "/shop",
     },
     {
-      title: "Contact",
+      title: "Liên hệ",
       url: "/contact",
     },
   ];
@@ -86,7 +86,12 @@ const Header = () => {
             </div>
             <div
               onClick={() => {
-                router.push("/my-page");
+                router.push({
+                  pathname: "/my-page",
+                  query: {
+                    tab: "registerInfor",
+                  },
+                });
               }}
               className="w-[28px] aspect-square relative cursor-pointer"
             >

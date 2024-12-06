@@ -28,7 +28,14 @@ function MenuItem({
       onClick={(e) => {
         if (isLink && link) {
           localStorage.setItem("target_page", link);
-          router.push(link);
+          if (link === "/my-page") {
+            router.push({
+              pathname: "/my-page",
+              query: {
+                tab: "registerInfor",
+              },
+            });
+          } else router.push(link);
         } else {
           e.stopPropagation();
           handleClick?.();

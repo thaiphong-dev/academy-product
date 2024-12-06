@@ -309,10 +309,10 @@ const ScheduleWithNavigation = ({ data }: Props) => {
                 </div>
                 <div className="grid grid-cols-3 gap-4">
                   {row.data.map((item, colIndex) => (
-                    <div key={colIndex} className="text-center">
+                    <div key={colIndex} className="text-center text-[18px]">
                       {item.tick === "✓" ? (
                         <span
-                          className={`text-[18px] ${
+                          className={` ${
                             item.isPaid ? "text-green-500" : "text-red-500"
                           }`}
                         >

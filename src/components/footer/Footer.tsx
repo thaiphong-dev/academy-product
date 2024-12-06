@@ -6,27 +6,27 @@ import FeedCard from "./FeedCard";
 export default function Footer() {
   const link = [
     {
-      title: "Home",
+      title: "Trang chủ",
       url: "/",
     },
     {
-      title: "About Us",
+      title: "Về chúng tôi",
       url: "/about-us",
     },
     {
-      title: "Booking Course",
+      title: "Đăng ký",
       url: "/booking",
     },
     {
-      title: "Our Coaches",
+      title: "Huấn luyện viên",
       url: "/coaches",
     },
     {
-      title: "Shop",
+      title: "Cửa hàng",
       url: "/shop",
     },
     {
-      title: "Contact",
+      title: "Liên hệ",
       url: "/contact",
     },
   ];

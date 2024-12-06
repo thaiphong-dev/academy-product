@@ -3,7 +3,8 @@ import React, { useRef, useState } from "react";
 import { Table, Checkbox, Modal, Card } from "antd/lib";
 // import dynamic from "next/dynamic";
 import { SmoothScrollTo } from "@/utils/scroll";
-import ScheduleWithNavigation from "./Schedule";
+import ListFees from "./ListFees";
+// import ScheduleWithNavigation from "./Schedule";
 
 // const Schedule = dynamic(() => import("./Schedule"), {
 //   ssr: false,
@@ -14,6 +15,17 @@ interface Schedule {
   isPaid: boolean;
   courseTime: string;
 }
+
+interface Fee {
+  id: number;
+  payer: string;
+  course: string;
+  sessions: number;
+  tuition: number;
+  status: string;
+  statusCode: number;
+  paymentDate: string;
+}
 interface Student {
   id: number;
   name: string;
@@ -22,6 +34,7 @@ interface Student {
   course: string;
   remainingSessions: number;
   schedule?: Schedule[];
+  fees?: Fee[];
 }
 
 const StudentList = () => {
@@ -33,6 +46,38 @@ const StudentList = () => {
       age: 20,
       course: "Cơ bản",
       remainingSessions: 5,
+      fees: [
+        {
+          id: 1,
+          payer: "Nguyễn Văn AA",
+          course: "Nâng cao",
+          sessions: 20,
+          tuition: 5000000,
+          status: "Đã đóng",
+          statusCode: 1,
+          paymentDate: "2024-12-05",
+        },
+        {
+          id: 2,
+          payer: "Nguyễn Văn AA",
+          course: "Nâng cao",
+          sessions: 15,
+          tuition: 3000000,
+          statusCode: 1,
+          status: "Đã đóng",
+          paymentDate: "2024-12-02",
+        },
+        {
+          id: 3,
+          payer: "",
+          course: "Nâng cao",
+          sessions: 25,
+          tuition: 7000000,
+          statusCode: 0,
+          status: "Chưa đóng",
+          paymentDate: "2024-12-10",
+        },
+      ],
       schedule: [
         { dateStudy: "03/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
         { dateStudy: "04/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
@@ -53,6 +98,28 @@ const StudentList = () => {
       age: 22,
       course: "Trung bình",
       remainingSessions: 3,
+      fees: [
+        {
+          id: 1,
+          payer: "Trần Thị B",
+          course: "Trung bình",
+          sessions: 20,
+          tuition: 5000000,
+          statusCode: 1,
+          status: "Đã đóng",
+          paymentDate: "2024-12-05",
+        },
+        {
+          id: 2,
+          payer: "Trần Thị B",
+          course: "Trung bình",
+          sessions: 15,
+          tuition: 3000000,
+          statusCode: 0,
+          status: "Chưa đóng",
+          paymentDate: "2024-12-02",
+        },
+      ],
       schedule: [
         { dateStudy: "23/11/2024", courseTime: "18:00 - 19:30", isPaid: true },
         { dateStudy: "29/11/2024", courseTime: "18:00 - 19:30", isPaid: true },
@@ -72,6 +139,18 @@ const StudentList = () => {
       gender: "Nam",
       age: 19,
       course: "Nâng cao",
+      fees: [
+        {
+          id: 1,
+          payer: "Trần Thị B",
+          course: "Nâng cao",
+          sessions: 20,
+          tuition: 5000000,
+          statusCode: 0,
+          status: "Chưa đóng",
+          paymentDate: "2024-12-05",
+        },
+      ],
       remainingSessions: 7,
       schedule: [
         { dateStudy: "03/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
@@ -170,9 +249,7 @@ const StudentList = () => {
           bordered
         />
         <div ref={scheduleRef} className="mt-4">
-          <ScheduleWithNavigation
-            data={data.find((x) => x?.id === selectedId)?.schedule}
-          />
+          <ListFees data={data.find((x) => x?.id === selectedId)?.fees} />
         </div>
       </div>
 
@@ -226,15 +303,15 @@ const StudentList = () => {
         ))}
 
         <Modal
-          title={`Lịch học của ${data.find((x) => x?.id === selectedId)?.name}`}
+          title={`Lịch sử đóng học phí: ${
+            data.find((x) => x?.id === selectedId)?.name
+          }`}
           open={isModalVisible}
           onCancel={handleCloseModal}
           footer={null}
           style={{ top: 20 }}
         >
-          <ScheduleWithNavigation
-            data={data.find((x) => x?.id === selectedId)?.schedule}
-          />
+          <ListFees data={data.find((x) => x?.id === selectedId)?.fees} />
         </Modal>
       </div>
     </>

@@ -10,32 +10,32 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const menuItems = [
     {
       key: 1,
-      label: "Home",
+      label: "Trang chủ",
       url: "/",
     },
     {
       key: 2,
-      label: "About Us",
+      label: "Về chúng tôi",
       url: "/about-us",
     },
     {
       key: 3,
-      label: "Booking Course",
+      label: "Đăng ký",
       url: "/booking",
     },
     {
       key: 4,
-      label: "Our Coaches",
+      label: "Huấn luyện viên",
       url: "/coaches",
     },
     {
       key: 5,
-      label: "Shop",
+      label: "Cửa hàng",
       url: "/shop",
     },
     {
       key: 6,
-      label: "Contact",
+      label: "Liên hệ",
       url: "/contact",
     },
   ];

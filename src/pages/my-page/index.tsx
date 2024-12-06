@@ -15,6 +15,7 @@ const Index = () => {
       <div className="md:hidden  ">
         <div className="w-screen ">
           <Contents />
+          <SideBarMenu />
         </div>
       </div>
     </>
