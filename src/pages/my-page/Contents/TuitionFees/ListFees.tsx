@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import { Table } from "antd";
+import { Table } from "antd/lib";
 import type { ColumnsType } from "antd/es/table";
 import dayjs from "dayjs";
 
@@ -83,7 +83,7 @@ const ListFees = ({ data }: Props) => {
       {/* UI cho Mobile */}
       <div className="bg-white  rounded-md shadow-md md:hidden">
         <div className="space-y-4">
-          {data.map((item: any) => (
+          {data?.map((item: any) => (
             <div
               key={item.id}
               className="border rounded-lg p-4 flex flex-col space-y-2"
