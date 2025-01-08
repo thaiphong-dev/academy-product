@@ -26,7 +26,7 @@ export default function PromoBanner() {
               a class and see how our professional coaches can help you excel on
               the court.
             </p>
-            <div className="py-[10px] px-[25px] w-fit bg-main text-white rounded-[20px]  text-[16px] font-[500] hover:bg-[#2F88A6] hover:text-white transition-all duration-200 cursor-pointer">
+            <div className="py-[10px] px-[25px] w-fit bg-main text-white rounded-[20px]  text-[16px] font-[500] hover:bg-white hover:text-main hover:border hover:border-main transition-all duration-200 cursor-pointer">
               Register now
             </div>
           </div>

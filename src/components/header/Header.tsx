@@ -52,6 +52,7 @@ const Header = () => {
                 fill
                 sizes="auto"
                 alt="logo"
+                className="rounded-full"
               />
             </div>
 

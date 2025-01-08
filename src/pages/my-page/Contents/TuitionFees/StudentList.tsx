@@ -5,6 +5,7 @@ import { Table, Checkbox, Modal, Card } from "antd/lib";
 import { SmoothScrollTo } from "@/utils/scroll";
 import ListFees from "./ListFees";
 // import ScheduleWithNavigation from "./Schedule";
+import infor from "../../../../data/infor.json";
 
 // const Schedule = dynamic(() => import("./Schedule"), {
 //   ssr: false,
@@ -38,134 +39,7 @@ interface Student {
 }
 
 const StudentList = () => {
-  const data: Student[] = [
-    {
-      id: 1,
-      name: "Nguyễn Văn A",
-      gender: "Nam",
-      age: 20,
-      course: "Cơ bản",
-      remainingSessions: 5,
-      fees: [
-        {
-          id: 1,
-          payer: "Nguyễn Văn AA",
-          course: "Nâng cao",
-          sessions: 20,
-          tuition: 5000000,
-          status: "Đã đóng",
-          statusCode: 1,
-          paymentDate: "2024-12-05",
-        },
-        {
-          id: 2,
-          payer: "Nguyễn Văn AA",
-          course: "Nâng cao",
-          sessions: 15,
-          tuition: 3000000,
-          statusCode: 1,
-          status: "Đã đóng",
-          paymentDate: "2024-12-02",
-        },
-        {
-          id: 3,
-          payer: "",
-          course: "Nâng cao",
-          sessions: 25,
-          tuition: 7000000,
-          statusCode: 0,
-          status: "Chưa đóng",
-          paymentDate: "2024-12-10",
-        },
-      ],
-      schedule: [
-        { dateStudy: "03/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "04/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "05/12/2024", courseTime: "19:30 - 21:00", isPaid: true },
-        { dateStudy: "07/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "10/12/2024", courseTime: "19:30 - 21:00", isPaid: true },
-        { dateStudy: "13/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "16/12/2024", courseTime: "18:00 - 19:30", isPaid: false },
-        { dateStudy: "25/12/2024", courseTime: "19:30 - 21:00", isPaid: false },
-        { dateStudy: "27/12/2024", courseTime: "18:00 - 19:30", isPaid: false },
-        { dateStudy: "30/12/2024", courseTime: "19:30 - 21:00", isPaid: false },
-      ],
-    },
-    {
-      id: 2,
-      name: "Trần Thị B",
-      gender: "Nữ",
-      age: 22,
-      course: "Trung bình",
-      remainingSessions: 3,
-      fees: [
-        {
-          id: 1,
-          payer: "Trần Thị B",
-          course: "Trung bình",
-          sessions: 20,
-          tuition: 5000000,
-          statusCode: 1,
-          status: "Đã đóng",
-          paymentDate: "2024-12-05",
-        },
-        {
-          id: 2,
-          payer: "Trần Thị B",
-          course: "Trung bình",
-          sessions: 15,
-          tuition: 3000000,
-          statusCode: 0,
-          status: "Chưa đóng",
-          paymentDate: "2024-12-02",
-        },
-      ],
-      schedule: [
-        { dateStudy: "23/11/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "29/11/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "03/12/2024", courseTime: "19:30 - 21:00", isPaid: true },
-        { dateStudy: "04/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "06/12/2024", courseTime: "19:30 - 21:00", isPaid: true },
-        { dateStudy: "10/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "20/12/2024", courseTime: "18:00 - 19:30", isPaid: false },
-        { dateStudy: "25/12/2024", courseTime: "19:30 - 21:00", isPaid: false },
-        { dateStudy: "27/12/2024", courseTime: "18:00 - 19:30", isPaid: false },
-        { dateStudy: "30/12/2024", courseTime: "19:30 - 21:00", isPaid: false },
-      ],
-    },
-    {
-      id: 3,
-      name: "Lê Văn C",
-      gender: "Nam",
-      age: 19,
-      course: "Nâng cao",
-      fees: [
-        {
-          id: 1,
-          payer: "Trần Thị B",
-          course: "Nâng cao",
-          sessions: 20,
-          tuition: 5000000,
-          statusCode: 0,
-          status: "Chưa đóng",
-          paymentDate: "2024-12-05",
-        },
-      ],
-      remainingSessions: 7,
-      schedule: [
-        { dateStudy: "03/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "04/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "05/12/2024", courseTime: "19:30 - 21:00", isPaid: true },
-        { dateStudy: "07/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "08/12/2024", courseTime: "19:30 - 21:00", isPaid: true },
-        { dateStudy: "11/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "13/12/2024", courseTime: "18:00 - 19:30", isPaid: false },
-        { dateStudy: "15/12/2024", courseTime: "19:30 - 21:00", isPaid: false },
-        { dateStudy: "17/12/2024", courseTime: "18:00 - 19:30", isPaid: false },
-        { dateStudy: "20/12/2024", courseTime: "19:30 - 21:00", isPaid: false },
-      ],
-    },
-  ];
+  const data = infor.studentList;
 
   const [selectedId, setSelectedId] = useState<number>(data[0]?.id);
   const [isModalVisible, setIsModalVisible] = useState(false);

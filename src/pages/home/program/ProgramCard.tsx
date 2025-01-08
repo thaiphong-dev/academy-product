@@ -53,7 +53,7 @@ const ProgramCard = ({
         <p>{content}</p>
 
         {buttonTitle && (
-          <div className="w-fit px-[40px] py-[10px] bg-main rounded-[10px] text-white hover:bg-[#2F88A6] cursor-pointer transition-all duration-150">
+          <div className="w-fit px-[40px] py-[10px] bg-main rounded-[10px] text-white hover:bg-white hover:text-main hover:border hover:border-main  cursor-pointer transition-all duration-150">
             {buttonTitle}
           </div>
         )}

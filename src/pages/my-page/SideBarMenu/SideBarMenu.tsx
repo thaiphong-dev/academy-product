@@ -63,7 +63,7 @@ const SideBarMenu = () => {
             <p
               className="cursor-pointer hover:text-main"
               style={{
-                color: tab === "registerInfor" ? "#08ac54" : "black",
+                color: tab === "registerInfor" ? "#ff923b" : "black",
               }}
             >
               Thông tin đăng ký
@@ -76,7 +76,7 @@ const SideBarMenu = () => {
             <p
               className="cursor-pointer hover:text-main"
               style={{
-                color: tab === "tuitionFee" ? "#08ac54" : "black",
+                color: tab === "tuitionFee" ? "#ff923b" : "black",
               }}
             >
               Học phí
@@ -89,7 +89,7 @@ const SideBarMenu = () => {
             <p
               className="cursor-pointer hover:text-main"
               style={{
-                color: tab === "notification" ? "#08ac54" : "black",
+                color: tab === "notification" ? "#ff923b" : "black",
               }}
             >
               Thông báo
@@ -102,7 +102,7 @@ const SideBarMenu = () => {
             <p
               className="cursor-pointer hover:text-main"
               style={{
-                color: tab === "customerCenter" ? "#08ac54" : "black",
+                color: tab === "customerCenter" ? "#ff923b" : "black",
               }}
             >
               Trung tâm hỗ trợ

@@ -24,8 +24,12 @@
 
 .ant-input,
 .ant-select,
-.ant-input-number-input {
+.ant-input-number-input,
+.ant-input-password {
   height: 50px !important;
+}
+.ant-input-password > .ant-input {
+  height: auto !important;
 }
 
 .custom-select .ant-select-selector {
@@ -37,7 +41,23 @@
   border: none !important; /* Loại bỏ border khi chọn */
 }
 .custom-select .ant-select-selection-item {
-  color: #1890ff !important; /* Thay #1890ff bằng màu primary của bạn */
+  color: #ff923b !important; /* Thay #1890ff bằng màu primary của bạn */
+}
+.ant-input:focus,
+/* .ant-input-number-input:focus, */
+.ant-select:focus,
+.ant-select-selector:focus,
+.ant-select-selector:focus-within,
+.ant-input-number:focus,
+.ant-input-number:focus-within,
+.ant-input-password:focus,
+.ant-input-password:focus-within,
+.ant-input:hover,
+.ant-select:hover,
+.ant-select-selector:hover,
+.ant-input-number:hover,
+.ant-input-password:hover {
+  border-color: #ff923b !important;
 }
 
 .ant-picker-dropdown {
@@ -46,7 +66,15 @@
   right: 0 !important; /* Đảm bảo dropdown không vượt qua phải màn hình */
   overflow: hidden; /* Ngăn chặn tràn */
 }
-
+.ant-btn {
+  min-height: 40px !important;
+  background-color: #ff923b;
+}
+.ant-btn:hover {
+  background-color: white !important;
+  color: #ff923b !important;
+  border: #ff923b 1px solid !important;
+}
 /* 
 @media (prefers-color-scheme: dark) {
   :root {

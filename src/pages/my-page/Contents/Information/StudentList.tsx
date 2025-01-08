@@ -4,6 +4,7 @@ import { Table, Checkbox, Modal, Card } from "antd/lib";
 // import dynamic from "next/dynamic";
 import { SmoothScrollTo } from "@/utils/scroll";
 import ScheduleWithNavigation from "./Schedule";
+import infor from "../../../../data/infor.json";
 
 // const Schedule = dynamic(() => import("./Schedule"), {
 //   ssr: false,
@@ -25,68 +26,7 @@ interface Student {
 }
 
 const StudentList = () => {
-  const data: Student[] = [
-    {
-      id: 1,
-      name: "Nguyễn Văn A",
-      gender: "Nam",
-      age: 20,
-      course: "Cơ bản",
-      remainingSessions: 5,
-      schedule: [
-        { dateStudy: "03/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "04/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "05/12/2024", courseTime: "19:30 - 21:00", isPaid: true },
-        { dateStudy: "07/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "10/12/2024", courseTime: "19:30 - 21:00", isPaid: true },
-        { dateStudy: "13/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "16/12/2024", courseTime: "18:00 - 19:30", isPaid: false },
-        { dateStudy: "25/12/2024", courseTime: "19:30 - 21:00", isPaid: false },
-        { dateStudy: "27/12/2024", courseTime: "18:00 - 19:30", isPaid: false },
-        { dateStudy: "30/12/2024", courseTime: "19:30 - 21:00", isPaid: false },
-      ],
-    },
-    {
-      id: 2,
-      name: "Trần Thị B",
-      gender: "Nữ",
-      age: 22,
-      course: "Trung bình",
-      remainingSessions: 3,
-      schedule: [
-        { dateStudy: "23/11/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "29/11/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "03/12/2024", courseTime: "19:30 - 21:00", isPaid: true },
-        { dateStudy: "04/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "06/12/2024", courseTime: "19:30 - 21:00", isPaid: true },
-        { dateStudy: "10/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "20/12/2024", courseTime: "18:00 - 19:30", isPaid: false },
-        { dateStudy: "25/12/2024", courseTime: "19:30 - 21:00", isPaid: false },
-        { dateStudy: "27/12/2024", courseTime: "18:00 - 19:30", isPaid: false },
-        { dateStudy: "30/12/2024", courseTime: "19:30 - 21:00", isPaid: false },
-      ],
-    },
-    {
-      id: 3,
-      name: "Lê Văn C",
-      gender: "Nam",
-      age: 19,
-      course: "Nâng cao",
-      remainingSessions: 7,
-      schedule: [
-        { dateStudy: "03/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "04/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "05/12/2024", courseTime: "19:30 - 21:00", isPaid: true },
-        { dateStudy: "07/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "08/12/2024", courseTime: "19:30 - 21:00", isPaid: true },
-        { dateStudy: "11/12/2024", courseTime: "18:00 - 19:30", isPaid: true },
-        { dateStudy: "13/12/2024", courseTime: "18:00 - 19:30", isPaid: false },
-        { dateStudy: "15/12/2024", courseTime: "19:30 - 21:00", isPaid: false },
-        { dateStudy: "17/12/2024", courseTime: "18:00 - 19:30", isPaid: false },
-        { dateStudy: "20/12/2024", courseTime: "19:30 - 21:00", isPaid: false },
-      ],
-    },
-  ];
+  const data = infor.studentList;
 
   const [selectedId, setSelectedId] = useState<number>(data[0]?.id);
   const [isModalVisible, setIsModalVisible] = useState(false);

@@ -261,12 +261,12 @@ const StudentInfor = () => {
                           />
                         </Form.Item>
                       )}
-                      <div className="w-full text-right text-[25px] text-main">
+                      {/* <div className="w-full text-right text-[25px] text-main">
                         Học phí:{" "}
                         <span className="text-main font-bold">
                           1.000.000 <span className="underline">đ</span>
                         </span>
-                      </div>
+                      </div> */}
                     </Fragment>
                   </Space>
                 ))}
@@ -276,7 +276,7 @@ const StudentInfor = () => {
                     onClick={() => add()}
                     block
                     icon={<PlusOutlined />}
-                    className=" !py-[10px] h-full rounded-[10px] drop-shadow-md "
+                    className=" !py-[10px] h-full rounded-[10px] drop-shadow-md  text-white"
                   >
                     Thêm học sinh
                   </Button>
@@ -291,7 +291,10 @@ const StudentInfor = () => {
               block
               className=" !px-[25px] !py-[10px] h-full rounded-[10px] bg-main drop-shadow-md"
             >
-              <p className="text-[18px] font-semibold text-white"> Đăng ký</p>
+              <p className="text-[18px] font-semibold text-white hover:text-main">
+                {" "}
+                Đăng ký
+              </p>
             </Button>
           </Form.Item>
         </Form>

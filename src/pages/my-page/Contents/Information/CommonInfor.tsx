@@ -11,7 +11,8 @@ import {
 } from "antd/lib";
 import { PlusOutlined } from "@ant-design/icons";
 import { FileType, GetBase64 } from "@/utils/image";
-
+import infor from "../../../../data/infor.json";
+import { useForm } from "antd/lib/form/Form";
 const CommonInfor = () => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
@@ -39,11 +40,22 @@ const CommonInfor = () => {
     console.log("Form Submitted:", values);
     // Add your update logic here
   };
+
+  const [form] = useForm<any>();
   return (
     <>
       <div className="md:flex hidden flex-col space-y-3  bg-white p-[20px] drop-shadow rounded-[10px]">
         <div className="text-[20px] font-semibold">Thông tin tài khoản</div>
-        <Form layout="vertical" onFinish={handleSubmit}>
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={handleSubmit}
+          initialValues={{
+            name: infor.name,
+            email: infor.email,
+            phoneNumber: infor.phoneNumber,
+          }}
+        >
           <div className="flex justify-start items-start space-x-12">
             <div className="pl-[20px]">
               <Upload
@@ -75,7 +87,7 @@ const CommonInfor = () => {
                 name="name"
                 rules={[{ required: true, message: "Họ và tên là bắt buộc!" }]}
               >
-                <Input placeholder="Nguyễn Văn A" />
+                <Input defaultValue={infor.name} placeholder="Nguyễn Văn A" />
               </Form.Item>
               <div className="flex justify-between items-center space-x-[10px]">
                 <Form.Item
@@ -87,12 +99,15 @@ const CommonInfor = () => {
                     { type: "email", message: "Vui lòng nhập email hợp lệ!" },
                   ]}
                 >
-                  <Input placeholder="example@gmail.com" />
+                  <Input
+                    defaultValue={infor.email}
+                    placeholder="example@gmail.com"
+                  />
                 </Form.Item>
                 <Form.Item
                   className="w-full"
                   label="Số điện thoại"
-                  name="phone"
+                  name="phoneNumber"
                   rules={[
                     { required: true, message: "Số điện thoại là bắt buộc!" },
                     {
@@ -101,7 +116,10 @@ const CommonInfor = () => {
                     },
                   ]}
                 >
-                  <Input placeholder="0123456789" />
+                  <Input
+                    defaultValue={infor.phoneNumber}
+                    placeholder="0123456789"
+                  />
                 </Form.Item>
               </div>
             </div>
@@ -152,7 +170,7 @@ const CommonInfor = () => {
                 name="name"
                 rules={[{ required: true, message: "Họ và tên là bắt buộc!" }]}
               >
-                <Input placeholder="Nguyễn Văn A" />
+                <Input defaultValue={infor.name} placeholder="Nguyễn Văn A" />
               </Form.Item>
               <div className="flex justify-between items-center space-x-[10px]">
                 <Form.Item
@@ -164,7 +182,10 @@ const CommonInfor = () => {
                     { type: "email", message: "Vui lòng nhập email hợp lệ!" },
                   ]}
                 >
-                  <Input placeholder="example@gmail.com" />
+                  <Input
+                    defaultValue={infor.email}
+                    placeholder="example@gmail.com"
+                  />
                 </Form.Item>
                 <Form.Item
                   className="w-full"
@@ -178,7 +199,10 @@ const CommonInfor = () => {
                     },
                   ]}
                 >
-                  <Input placeholder="0123456789" />
+                  <Input
+                    defaultValue={infor.phoneNumber}
+                    placeholder="0123456789"
+                  />
                 </Form.Item>
               </div>
             </div>
