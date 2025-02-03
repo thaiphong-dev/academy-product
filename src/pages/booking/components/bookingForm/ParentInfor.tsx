@@ -42,6 +42,20 @@ const ParentInfor = () => {
           </Form.Item>
 
           <Form.Item
+            rules={[
+              {
+                required: true,
+                message: "Vui lòng nhập trường thông tin bắt buộc!",
+              },
+            ]}
+          >
+            <label className="text-[16px] md:text-[15px]">
+              Quan hệ với học sinh <span className="text-red-600">*</span>
+            </label>
+            <Input placeholder="Cha, mẹ, ...." />
+          </Form.Item>
+
+          <Form.Item
             name="phone"
             rules={[
               { required: true, message: "Vui lòng nhập số điện thoại!" },

@@ -1,32 +1,34 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { Fragment, useEffect, useState } from "react";
-
 import {
   Button,
   Checkbox,
+  DatePicker,
   Form,
   Input,
-  InputNumber,
+  Modal,
   Select,
   Space,
+  Upload,
 } from "antd/lib";
 import { CloseCircleOutlined, PlusOutlined } from "@ant-design/icons/lib";
-
+import dayjs from "dayjs";
+import styles from "./index.module.scss";
 const StudentInfor = () => {
   const [form] = Form.useForm();
+
   const onFinish = (values: any) => {
-    console.log("values:", values);
+    console.log("Submitted values:", values);
   };
 
   const onFinishFailed = (values: any) => {
-    console.log("values", values);
+    console.log("Submission failed values:", values);
   };
 
   useEffect(() => {
-    // Explicitly set default values for 'student' field if needed
     const students = form.getFieldValue("student");
     if (!students || students.length === 0) {
-      // Set default values for student array if not already present
       form.setFieldsValue({
         student: [
           {
@@ -37,6 +39,7 @@ const StudentInfor = () => {
             class: "",
             amount: "",
             pickUpService: false,
+            avatar: [],
           },
         ],
       });
@@ -45,8 +48,21 @@ const StudentInfor = () => {
 
   const handleChange = (name: any, fieldName: string, value: any) => {
     form.setFieldValue(["student", name, fieldName], value);
+    setRefreshUpload(Math.random());
   };
+
   const [refresh, setRefresh] = useState(Math.random());
+  const [refreshUpload, setRefreshUpload] = useState(Math.random());
+  const [previewVisible, setPreviewVisible] = useState(false);
+  const [previewImage, setPreviewImage] = useState<string | undefined>(""); // Để giá trị khởi tạo là chuỗi rỗng hoặc undefined
+
+  const uploadButton = (
+    <div className="space-y-[10px] ">
+      <PlusOutlined style={{ color: "#ff923b", fontSize: "20px" }} />
+      <div className="ant-upload-text">Ảnh đại diện</div>
+    </div>
+  );
+
   return (
     <div className="md:w-[600px] w-full h-full space-y-[10px] md:space-y-[20px] px-[10px] md:px-[20px] py-[10px] md:py-[20px]">
       <div>
@@ -77,9 +93,71 @@ const StudentInfor = () => {
                           onClick={() => remove(name)}
                           className="w-full text-[20px] cursor-pointer text-red-600 justify-end items-end text-right"
                         >
-                          <CloseCircleOutlined />{" "}
+                          <CloseCircleOutlined />
                         </div>
                       )}
+                    </div>
+
+                    <div className="w-full flex flex-col justify-center items-center">
+                      <Form.Item
+                        key={refreshUpload}
+                        name={[name, "avatar"]}
+                        valuePropName="fileList"
+                        getValueFromEvent={(e) =>
+                          Array.isArray(e) ? e : e?.fileList
+                        }
+                        rules={[
+                          {
+                            required: true,
+                            message: "Vui lòng tải lên ảnh đại diện!",
+                          },
+                        ]}
+                      >
+                        <Upload
+                          listType="picture-card"
+                          className={`avatar-uploader ${styles.customUpload}`}
+                          beforeUpload={() => false}
+                          maxCount={1}
+                          fileList={form.getFieldValue([
+                            "student",
+                            name,
+                            "avatar",
+                          ])}
+                          onChange={({ fileList }) => {
+                            handleChange(name, "avatar", fileList);
+                          }}
+                          onPreview={(file) => {
+                            setPreviewImage(file.url); // Lấy đường dẫn ảnh để hiển thị trong modal
+                            setPreviewVisible(true); // Mở modal
+                          }}
+                          onRemove={(file) => {
+                            console.log(file); // Xử lý khi xóa ảnh
+                          }}
+                        >
+                          {form.getFieldValue(["student", name, "avatar"])
+                            ?.length >= 1
+                            ? null
+                            : uploadButton}
+                        </Upload>
+
+                        {/* Modal hiển thị ảnh xem trước */}
+                        <Modal
+                          open={previewVisible}
+                          footer={null}
+                          onCancel={() => setPreviewVisible(false)}
+                          width={800} // Đặt chiều rộng cho Modal
+                        >
+                          <img
+                            alt="Preview"
+                            style={{
+                              width: "100%", // Đảm bảo ảnh chiếm toàn bộ chiều rộng của modal
+                              height: "auto",
+                              objectFit: "contain", // Giữ nguyên tỷ lệ ảnh
+                            }}
+                            src={previewImage}
+                          />
+                        </Modal>
+                      </Form.Item>
                     </div>
                     <Form.Item
                       name={[name, "fullname"]}
@@ -97,6 +175,26 @@ const StudentInfor = () => {
                           handleChange(name, "fullname", e.target.value);
                         }}
                         placeholder="Nhập họ và tên"
+                      />
+                    </Form.Item>
+
+                    <Form.Item
+                      name={[name, "workingPlace"]}
+                      {...restField}
+                      rules={[
+                        { required: true, message: "Vui lòng nhập họ và tên!" },
+                      ]}
+                    >
+                      <label className="md:text-[16px] text-[15px]">
+                        Tên trường học, cơ quan{" "}
+                        <span className="text-red-600">*</span>
+                      </label>
+
+                      <Input
+                        onChange={(e) => {
+                          handleChange(name, "workingPlace", e.target.value);
+                        }}
+                        placeholder="Nhập tên trường học, cơ quan"
                       />
                     </Form.Item>
                     <div className="flex justify-between items-center space-x-[10px]">
@@ -129,89 +227,124 @@ const StudentInfor = () => {
                       <Form.Item
                         {...restField}
                         className="w-[50%]"
-                        name={[name, "age"]}
-                        rules={[
-                          { required: true, message: "Vui lòng nhập tuổi!" },
-                        ]}
-                      >
-                        <label className="md:text-[16px] text-[15px]">
-                          Tuổi <span className="text-red-600">*</span>
-                        </label>
-                        <InputNumber
-                          onChange={(e) => {
-                            handleChange(name, "age", e);
-                          }}
-                          placeholder="Nhập Tuổi"
-                          style={{ width: "100%" }}
-                        />
-                      </Form.Item>
-                    </div>
-
-                    <div className="flex justify-between items-center space-x-[10px]">
-                      <Form.Item
-                        {...restField}
-                        className="w-[50%]"
-                        name={[name, "class"]}
-                        rules={[
-                          { required: true, message: "Vui lòng lớp học!" },
-                        ]}
-                      >
-                        <label className="md:text-[16px] text-[15px]">
-                          Lớp học <span className="text-red-600">*</span>
-                        </label>
-                        <Select
-                          onChange={(e) => {
-                            handleChange(name, "class", e);
-                          }}
-                          placeholder="Địa điểm học"
-                        >
-                          <Select.Option value="basic">Cơ bản</Select.Option>
-                          <Select.Option value="adventage">
-                            Nâng cao
-                          </Select.Option>
-                          <Select.Option value="private">
-                            Huấn luyện riêng
-                          </Select.Option>
-                        </Select>
-                      </Form.Item>
-
-                      <Form.Item
-                        {...restField}
-                        className="w-[50%]"
-                        name={[name, "amount"]}
+                        name={[name, "birthDate"]}
                         rules={[
                           {
                             required: true,
-                            message: "Vui lòng chọn số buổi học!",
+                            message: "Vui lòng chọn ngày sinh!",
                           },
                         ]}
                       >
                         <label className="md:text-[16px] text-[15px]">
-                          Số buổi học <span className="text-red-600">*</span>
+                          Ngày sinh <span className="text-red-600">*</span>
                         </label>
-                        <Select
-                          onChange={(e) => {
-                            handleChange(name, "amount", e);
-                          }}
-                          placeholder="Số buổi học"
-                        >
-                          <Select.Option value="eightB">
-                            8 Buổi/tháng
-                          </Select.Option>
-                          <Select.Option value="twelveB">
-                            12 Buổi/tháng
-                          </Select.Option>
-                          <Select.Option value="sixteenB">
-                            16 Buổi/tháng
-                          </Select.Option>
-                          <Select.Option value="twentyB">
-                            20 Buổi/tháng
-                          </Select.Option>
-                          <Select.Option value="twentyFourB">
-                            24 Buổi/tháng
-                          </Select.Option>
-                        </Select>
+                        <DatePicker
+                          className="w-full rounded-md"
+                          format="DD/MM/YYYY"
+                          placeholder="Chọn ngày sinh"
+                          placement="bottomRight"
+                          onChange={(date) =>
+                            handleChange(name, "birthDate", date)
+                          }
+                          disabledDate={(current) =>
+                            current && current > dayjs().endOf("day")
+                          }
+                        />
                       </Form.Item>
+                    </div>
+                    <Form.Item
+                      name={[name, "phoneNumber"]}
+                      {...restField}
+                      rules={[
+                        {
+                          pattern: /^[0-9]{10,11}$/,
+                          message: "Số điện thoại không hợp lệ!",
+                        },
+                      ]}
+                    >
+                      <label className="md:text-[16px] text-[15px]">
+                        Số điện thoại
+                      </label>
+
+                      <Input
+                        onChange={(e) => {
+                          handleChange(name, "phoneNumber", e.target.value);
+                        }}
+                        placeholder="0123456789"
+                      />
+                    </Form.Item>
+
+                    <div>
+                      <div className="flex justify-between items-center space-x-[10px]">
+                        <Form.Item
+                          {...restField}
+                          className="w-[50%]"
+                          name={[name, "amount"]}
+                          rules={[
+                            {
+                              required: true,
+                              message: "Vui lòng chọn số buổi học!",
+                            },
+                          ]}
+                        >
+                          <label className="md:text-[16px] text-[15px]">
+                            Số buổi học <span className="text-red-600">*</span>
+                          </label>
+                          <Select
+                            onChange={(e) => {
+                              handleChange(name, "amount", e);
+                            }}
+                            placeholder="Số buổi học"
+                          >
+                            <Select.Option value="eightB">
+                              8 Buổi/tháng
+                            </Select.Option>
+                            <Select.Option value="twelveB">
+                              12 Buổi/tháng
+                            </Select.Option>
+                            <Select.Option value="sixteenB">
+                              16 Buổi/tháng
+                            </Select.Option>
+                            <Select.Option value="twentyB">
+                              20 Buổi/tháng
+                            </Select.Option>
+                            <Select.Option value="twentyFourB">
+                              24 Buổi/tháng
+                            </Select.Option>
+                          </Select>
+                        </Form.Item>
+                        <Form.Item
+                          {...restField}
+                          className="w-[50%]"
+                          name={[name, "class"]}
+                        >
+                          <label className="md:text-[16px] text-[15px]">
+                            Khoá Học mong muốn
+                          </label>
+                          <Select
+                            onChange={(e) => {
+                              handleChange(name, "class", e);
+                            }}
+                            placeholder="Khoá Học mong muốn"
+                          >
+                            <Select.Option value="basic">Cơ bản</Select.Option>
+                            <Select.Option value="adventage">
+                              Nâng cao
+                            </Select.Option>
+                            <Select.Option value="private">
+                              Huấn luyện riêng
+                            </Select.Option>
+                          </Select>
+                        </Form.Item>
+                      </div>
+                      <div className="text-red-600 flex justify-start relative top-[-20px]">
+                        <div className="w-[100px]">* Lưu ý :</div>
+                        <div className="inline-block">
+                          Để đảm bảo chất lượng tốt nhất trong cả việc dạy và
+                          học, ban huấn luyện sẽ đưa ra bài test cho học sinh để
+                          đánh giá trình độ và chia lớp phù hợp nhất.
+                        </div>
+                      </div>
                     </div>
 
                     <Fragment key={refresh}>

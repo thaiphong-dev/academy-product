@@ -25,7 +25,7 @@
 .ant-input,
 .ant-select,
 .ant-input-number-input,
-.ant-input-password {
+.ant-input-password, .ant-picker {
   height: 50px !important;
 }
 .ant-input-password > .ant-input {
@@ -56,7 +56,9 @@
 .ant-select:hover,
 .ant-select-selector:hover,
 .ant-input-number:hover,
-.ant-input-password:hover {
+.ant-input-password:hover,
+.ant-picker:focus, .ant-picker:hover,
+.ant-picker:focus-within {
   border-color: #ff923b !important;
 }
 

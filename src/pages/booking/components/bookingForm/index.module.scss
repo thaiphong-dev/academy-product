@@ -1,0 +1,21 @@
+.customUpload {
+
+:global {
+    .ant-upload  {
+        width: 150px !important;
+        height: 180px !important;
+        border: 1px #ff923b dotted;
+        border-radius: 5px;
+    }
+    .ant-upload-list-item-container {
+        width: 150px !important;
+        height: 180px !important;
+    }
+    .avatar-uploader .ant-upload-list-item img {
+        width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng của khung */
+        height: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều cao của khung */
+        object-fit: cover; /* Cắt ảnh để giữ tỷ lệ khung hình mà không bị biến dạng */
+      }
+ 
+}
+}
